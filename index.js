@@ -8,7 +8,7 @@ app.use(parser.urlencoded({extended : true}));
 app.set('view engine', 'jade');
 
 app.get("/newnum", function(request, response) {
-	var primes = fs.readFileSync('./data/test.txt', {encoding:'utf8', flag:'r'});
+	var primes = fs.readFileSync('./data/listofprimes.txt', {encoding:'utf8', flag:'r'});
 	var primeList = primes.split('\r\n');
 	var done = false;
 	var toReturn = '';
@@ -23,13 +23,13 @@ app.get("/newnum", function(request, response) {
 				primeList[i] = sections[0] + ' 0';
 			}
 		}
-		fs.writeFileSync('./data/test.txt', primeList.join('\r\n'));
+		fs.writeFileSync('./data/listofprimes.txt', primeList.join('\r\n'));
 	}
 
 	console.log(toReturn);
 	response.send(toReturn);
 })
 
-app.listen(8080);
+app.listen(80);
 
 console.log('started');
